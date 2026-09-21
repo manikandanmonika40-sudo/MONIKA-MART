@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | MONIKA MART</title>
+  <meta name="description" content="Sign in to your MONIKA MART account to access your cart, wishlist, and orders.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="offer-bar">
+    <span>⚡ Welcome to MONIKA MART! Secure Full-Stack Authentication</span>
+  </div>
+
+  <!-- Main Auth Container -->
+  <div class="auth-page">
+    <div class="auth-card">
+      
+      <div class="auth-header">
+        <a href="index.html" class="brand-logo">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>MONIKA <span class="mart-text">MART</span></span>
+        </a>
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in with your registered email and password</p>
+      </div>
+
+      <!-- Demo Accounts Helper -->
+      <div class="demo-credentials-box">
+        <div class="demo-credentials-header">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary-blue);"></i>
+          <span>Quick Demo Login Credentials:</span>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:0.4rem;">
+          Click below to auto-fill credentials pre-seeded in MySQL database:
+        </p>
+        <div class="demo-btn-group">
+          <button type="button" class="demo-fill-btn" onclick="fillDemoCredentials('customer')">
+            <i class="fa-solid fa-user"></i> Customer Demo
+          </button>
+          <button type="button" class="demo-fill-btn" onclick="fillDemoCredentials('admin')">
+            <i class="fa-solid fa-user-shield"></i> Admin Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form">
+        
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email Address</label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-envelope input-icon"></i>
+            <input type="email" id="login-email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+            <label for="login-password" class="form-label" style="margin-bottom:0;">Password</label>
+          </div>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:1.5rem;">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In
+        </button>
+
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="register.html">Create an account</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

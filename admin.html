@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | MONIKA MART</title>
+  <meta name="description" content="MONIKA MART Administration Portal and analytics dashboard.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <a href="index.html" class="brand-logo" style="font-size:1.2rem;">
+          <i class="fa-solid fa-bag-shopping" style="width:34px; height:34px; font-size:1.1rem;"></i>
+          <span>MONIKA MART</span>
+        </a>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin.html" class="admin-nav-item active">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="admin-products.html" class="admin-nav-item">
+          <i class="fa-solid fa-box-archive"></i>
+          <span>Products</span>
+        </a>
+        <a href="admin-orders.html" class="admin-nav-item">
+          <i class="fa-solid fa-cart-flatbed-suitcase"></i>
+          <span>Orders</span>
+        </a>
+        <a href="admin-users.html" class="admin-nav-item">
+          <i class="fa-solid fa-users"></i>
+          <span>Users</span>
+        </a>
+        <a href="index.html" class="admin-nav-item" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>View Live Store</span>
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <button onclick="logoutUser()" class="btn btn-sm btn-outline btn-block" style="color:#ef4444; border-color:var(--navy-surface);">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Admin Content Area -->
+    <main class="admin-main">
+      
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-page-title">
+          <h2>Overview Dashboard</h2>
+          <p>Real-time analytics and store performance from MySQL</p>
+        </div>
+
+        <div class="admin-user-profile">
+          <div class="admin-avatar">A</div>
+          <div>
+            <strong style="display:block; font-size:0.92rem; color:var(--navy-dark);">Administrator</strong>
+            <span style="font-size:0.75rem; color:var(--text-muted);">admin@monikamart.com</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="admin-content">
+        
+        <!-- 4 Metric Cards -->
+        <div class="stats-grid">
+          
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total Users</div>
+              <div id="stat-total-users" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon blue">
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total Products</div>
+              <div id="stat-total-products" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon green">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total Orders</div>
+              <div id="stat-total-orders" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon purple">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total Revenue</div>
+              <div id="stat-total-revenue" class="stat-value">$0.00</div>
+            </div>
+            <div class="stat-icon amber">
+              <i class="fa-solid fa-dollar-sign"></i>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Orders Card -->
+        <div class="data-card">
+          <div class="data-card-header">
+            <h3 class="data-card-title">Recent Customer Orders</h3>
+            <a href="admin-orders.html" class="btn btn-sm btn-outline-primary">Manage All Orders</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-recent-orders-table">
+                <tr><td colspan="6" style="text-align:center; padding:2rem;"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

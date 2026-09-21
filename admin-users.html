@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Accounts | MONIKA MART Admin</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <a href="index.html" class="brand-logo" style="font-size:1.2rem;">
+          <i class="fa-solid fa-bag-shopping" style="width:34px; height:34px; font-size:1.1rem;"></i>
+          <span>MONIKA MART</span>
+        </a>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin.html" class="admin-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="admin-products.html" class="admin-nav-item">
+          <i class="fa-solid fa-box-archive"></i>
+          <span>Products</span>
+        </a>
+        <a href="admin-orders.html" class="admin-nav-item">
+          <i class="fa-solid fa-cart-flatbed-suitcase"></i>
+          <span>Orders</span>
+        </a>
+        <a href="admin-users.html" class="admin-nav-item active">
+          <i class="fa-solid fa-users"></i>
+          <span>Users</span>
+        </a>
+        <a href="index.html" class="admin-nav-item" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>View Live Store</span>
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <button onclick="logoutUser()" class="btn btn-sm btn-outline btn-block" style="color:#ef4444; border-color:var(--navy-surface);">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Admin Content Area -->
+    <main class="admin-main">
+      
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-page-title">
+          <h2>Registered User Accounts</h2>
+          <p>Customer directory and administrator roles in MySQL</p>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="admin-content">
+        
+        <div class="data-card">
+          <div class="data-card-header">
+            <h3 class="data-card-title">User Directory</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Full Name &amp; Email</th>
+                  <th>Phone Number</th>
+                  <th>Location</th>
+                  <th>Role</th>
+                  <th>Joined Date</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body">
+                <tr><td colspan="6" style="text-align:center; padding:2rem;"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

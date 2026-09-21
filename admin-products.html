@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management | MONIKA MART Admin</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <a href="index.html" class="brand-logo" style="font-size:1.2rem;">
+          <i class="fa-solid fa-bag-shopping" style="width:34px; height:34px; font-size:1.1rem;"></i>
+          <span>MONIKA MART</span>
+        </a>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin.html" class="admin-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="admin-products.html" class="admin-nav-item active">
+          <i class="fa-solid fa-box-archive"></i>
+          <span>Products</span>
+        </a>
+        <a href="admin-orders.html" class="admin-nav-item">
+          <i class="fa-solid fa-cart-flatbed-suitcase"></i>
+          <span>Orders</span>
+        </a>
+        <a href="admin-users.html" class="admin-nav-item">
+          <i class="fa-solid fa-users"></i>
+          <span>Users</span>
+        </a>
+        <a href="index.html" class="admin-nav-item" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>View Live Store</span>
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <button onclick="logoutUser()" class="btn btn-sm btn-outline btn-block" style="color:#ef4444; border-color:var(--navy-surface);">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Admin Content Area -->
+    <main class="admin-main">
+      
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-page-title">
+          <h2>Product Catalog Management</h2>
+          <p>Create, modify, and manage all store items stored in MySQL database</p>
+        </div>
+
+        <button onclick="openAddProductModal()" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Add New Product
+        </button>
+      </header>
+
+      <!-- Content -->
+      <div class="admin-content">
+        
+        <div class="data-card">
+          <div class="data-card-header">
+            <h3 class="data-card-title">All Products in Catalog</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Rating</th>
+                  <th>Featured</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-products-table-body">
+                <tr><td colspan="7" style="text-align:center; padding:2rem;"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Add / Edit Product Modal -->
+  <div id="product-form-modal" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="product-modal-title" class="modal-title">Add New Product</h3>
+        <button onclick="closeModal('product-form-modal')" class="modal-close-btn">&times;</button>
+      </div>
+
+      <form id="admin-product-form">
+        <div class="modal-body">
+          
+          <div class="form-group">
+            <label class="form-label">Product Name *</label>
+            <input type="text" id="prod-name" class="form-control" style="padding-left:1rem;" placeholder="e.g. Apple MacBook Pro M3" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div>
+              <label class="form-label">Category *</label>
+              <select id="prod-category" class="form-control" style="padding-left:1rem;" required>
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Home & Kitchen">Home & Kitchen</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Sports">Sports</option>
+                <option value="Stationery">Stationery</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label">Price ($) *</label>
+              <input type="number" id="prod-price" class="form-control" style="padding-left:1rem;" step="0.01" min="0" placeholder="99.99" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div>
+              <label class="form-label">Stock Quantity *</label>
+              <input type="number" id="prod-stock" class="form-control" style="padding-left:1rem;" min="0" placeholder="50" required>
+            </div>
+
+            <div>
+              <label class="form-label">Rating (1 to 5)</label>
+              <input type="number" id="prod-rating" class="form-control" style="padding-left:1rem;" step="0.1" min="1" max="5" placeholder="4.8">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Image URL (Unsplash or Direct Link)</label>
+            <input type="url" id="prod-image" class="form-control" style="padding-left:1rem;" placeholder="https://images.unsplash.com/...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="prod-desc" class="form-control" style="padding-left:1rem; height:90px;" placeholder="Product specifications and features..."></textarea>
+          </div>
+
+          <div style="display:flex; gap:1.5rem; margin-top:1rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+              <input type="checkbox" id="prod-featured">
+              <span style="font-size:0.9rem; font-weight:600;">Mark as Featured</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+              <input type="checkbox" id="prod-trending">
+              <span style="font-size:0.9rem; font-weight:600;">Mark as Trending</span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" onclick="closeModal('product-form-modal')" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

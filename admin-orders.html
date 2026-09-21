@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Management | MONIKA MART Admin</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <a href="index.html" class="brand-logo" style="font-size:1.2rem;">
+          <i class="fa-solid fa-bag-shopping" style="width:34px; height:34px; font-size:1.1rem;"></i>
+          <span>MONIKA MART</span>
+        </a>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin.html" class="admin-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="admin-products.html" class="admin-nav-item">
+          <i class="fa-solid fa-box-archive"></i>
+          <span>Products</span>
+        </a>
+        <a href="admin-orders.html" class="admin-nav-item active">
+          <i class="fa-solid fa-cart-flatbed-suitcase"></i>
+          <span>Orders</span>
+        </a>
+        <a href="admin-users.html" class="admin-nav-item">
+          <i class="fa-solid fa-users"></i>
+          <span>Users</span>
+        </a>
+        <a href="index.html" class="admin-nav-item" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>View Live Store</span>
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <button onclick="logoutUser()" class="btn btn-sm btn-outline btn-block" style="color:#ef4444; border-color:var(--navy-surface);">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Admin Content Area -->
+    <main class="admin-main">
+      
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-page-title">
+          <h2>Order Fulfillment &amp; Status</h2>
+          <p>Review customer purchases and update dispatch status</p>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="admin-content">
+        
+        <div class="data-card">
+          <div class="data-card-header">
+            <h3 class="data-card-title">All Customer Orders</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer Info</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-table-body">
+                <tr><td colspan="7" style="text-align:center; padding:2rem;"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Order Status Modal -->
+  <div id="order-status-modal" class="modal-backdrop">
+    <div class="modal-window" style="max-width:480px;">
+      <div class="modal-header">
+        <h3 id="order-status-modal-title" class="modal-title">Update Order Status</h3>
+        <button onclick="closeModal('order-status-modal')" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label class="form-label">Order Fulfillment Status</label>
+          <select id="order-status-select" class="form-control" style="padding-left:1rem;">
+            <option value="PLACED">PLACED (Order Received)</option>
+            <option value="CONFIRMED">CONFIRMED (Payment &amp; Inventory Verified)</option>
+            <option value="PACKED">PACKED (Boxed at Warehouse)</option>
+            <option value="SHIPPED">SHIPPED (Handed to Courier)</option>
+            <option value="OUT_FOR_DELIVERY">OUT_FOR_DELIVERY (On Delivery Vehicle)</option>
+            <option value="DELIVERED">DELIVERED (Completed)</option>
+            <option value="CANCELLED">CANCELLED (Voided)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Payment Status</label>
+          <select id="order-payment-status-select" class="form-control" style="padding-left:1rem;">
+            <option value="PENDING">PENDING</option>
+            <option value="PAID">PAID</option>
+            <option value="FAILED">FAILED</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" onclick="closeModal('order-status-modal')" class="btn btn-outline">Cancel</button>
+        <button type="button" onclick="submitOrderStatusUpdate()" class="btn btn-primary">Update Status</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

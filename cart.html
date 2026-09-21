@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | MONIKA MART</title>
+  <meta name="description" content="View and manage items in your MONIKA MART shopping cart.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="offer-bar">
+    <span>⚡ Free standard shipping applied automatically on all orders over $50!</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-main">
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <button class="mobile-toggle-btn" aria-label="Toggle navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <a href="index.html" class="brand-logo">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>MONIKA <span class="mart-text">MART</span></span>
+          </a>
+        </div>
+
+        <div class="search-wrapper">
+          <form class="search-form">
+            <input type="text" name="keyword" placeholder="Search products, brands, or categories..." autocomplete="off">
+            <button type="submit" aria-label="Search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="wishlist.html" class="action-item" title="Wishlist">
+            <i class="fa-regular fa-heart">
+              <span id="wishlist-badge-count" class="badge-count" style="display:none;">0</span>
+            </i>
+            <span>Wishlist</span>
+          </a>
+
+          <a href="cart.html" class="action-item" title="Shopping Cart">
+            <i class="fa-solid fa-cart-shopping">
+              <span id="cart-badge-count" class="badge-count" style="display:none;">0</span>
+            </i>
+            <span>Cart</span>
+          </a>
+
+          <div id="header-auth-container">
+            <a href="login.html" class="btn btn-sm btn-primary">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-overlay"></div>
+  <div class="mobile-nav-drawer">
+    <div class="drawer-header">
+      <div class="brand-logo" style="font-size:1.3rem;">
+        <i class="fa-solid fa-bag-shopping" style="width:34px; height:34px;"></i>
+        <span>MONIKA MART</span>
+      </div>
+      <button class="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="products.html"><i class="fa-solid fa-border-all"></i> All Products</a></li>
+      <li><a href="wishlist.html"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+      <li><a href="cart.html" class="active"><i class="fa-solid fa-cart-shopping"></i> My Cart</a></li>
+      <li><a href="orders.html"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+      <li><a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a></li>
+    </ul>
+  </div>
+
+  <!-- Cart Page Container -->
+  <main class="container">
+    <div style="margin-top:2.5rem; margin-bottom:1rem;">
+      <h1 style="font-size:2rem; font-weight:800; color:var(--navy-dark);">Shopping Cart</h1>
+      <p style="color:var(--text-muted); font-size:0.95rem;">Review your items before proceeding to checkout</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cart-empty-state" class="empty-state" style="display:none;">
+      <i class="fa-solid fa-cart-arrow-down"></i>
+      <h3>Your Cart is Empty</h3>
+      <p>Looks like you haven't added any products to your cart yet. Discover trending items now!</p>
+      <a href="products.html" class="btn btn-primary btn-lg">Explore Products</a>
+    </div>
+
+    <!-- Cart Layout (Items + Summary) -->
+    <div id="cart-content-layout" class="cart-layout">
+      
+      <!-- Items Table / List -->
+      <div id="cart-items-container">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Order Summary Card -->
+      <div class="summary-card">
+        <h3 style="font-size:1.25rem; font-weight:700; color:var(--navy-dark); margin-bottom:1.5rem;">Order Summary</h3>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summary-subtotal">$0.00</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Estimated Delivery</span>
+          <span id="summary-delivery">$0.00</span>
+        </div>
+
+        <div id="summary-discount-row" class="summary-row" style="display:none; color:var(--success);">
+          <span>Promo Discount</span>
+          <span id="summary-discount">-$0.00</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span id="summary-total" style="color:var(--primary-blue);">$0.00</span>
+        </div>
+
+        <!-- Promo Code Input -->
+        <div style="margin: 1.5rem 0 1.25rem;">
+          <label style="font-size:0.85rem; font-weight:600; color:var(--navy-dark); display:block; margin-bottom:0.35rem;">Promo Code</label>
+          <div style="display:flex; gap:0.5rem;">
+            <input type="text" id="promo-input" placeholder="Try MONIKA10" style="flex:1; padding:0.5rem 0.75rem; border:1px solid var(--border-light); border-radius:var(--radius-sm); outline:none;">
+            <button id="apply-promo-btn" class="btn btn-outline-primary btn-sm">Apply</button>
+          </div>
+        </div>
+
+        <button onclick="proceedToCheckout()" class="btn btn-primary btn-block btn-lg" style="margin-top:1rem;">
+          <i class="fa-solid fa-lock"></i> Proceed to Checkout
+        </button>
+
+        <div style="margin-top:1.5rem; font-size:0.82rem; color:var(--text-muted); text-align:center;">
+          <i class="fa-solid fa-shield-halved" style="color:var(--success);"></i> Safe &amp; Secure 256-Bit Encrypted Checkout
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 <strong>MONIKA MART</strong>. All prices in USD.</div>
+      <div style="display:flex; gap:1.5rem;">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="orders.html">Orders</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
