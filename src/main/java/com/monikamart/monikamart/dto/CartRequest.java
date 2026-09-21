@@ -1,0 +1,46 @@
+package com.monikamart.monikamart.dto;
+
+import jakarta.validation.constraints.NotNull;
+
+public class CartRequest {
+
+    private Long userId;
+
+    @NotNull(message = "Product ID is required")
+    private Long productId;
+
+    private Integer quantity = 1;
+
+    public CartRequest() {
+    }
+
+    public CartRequest(Long userId, Long productId, Integer quantity) {
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity != null ? quantity : 1;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+}
